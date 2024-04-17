@@ -25,9 +25,8 @@ class Project(Document):
 	from typing import TYPE_CHECKING
 
 	if TYPE_CHECKING:
-		from frappe.types import DF
-
 		from erpnext.projects.doctype.project_user.project_user import ProjectUser
+		from frappe.types import DF
 
 		actual_end_date: DF.Date | None
 		actual_start_date: DF.Date | None
@@ -65,6 +64,7 @@ class Project(Document):
 		to_time: DF.Time | None
 		total_billable_amount: DF.Currency
 		total_billed_amount: DF.Currency
+		total_budget: DF.Int
 		total_consumed_material_cost: DF.Currency
 		total_costing_amount: DF.Currency
 		total_purchase_cost: DF.Currency
@@ -766,3 +766,25 @@ def recalculate_project_total_purchase_cost(project: str | None = None):
 			"total_purchase_cost",
 			(total_purchase_cost and total_purchase_cost[0][0] or 0),
 		)
+@frappe.whitelist()
+def get_total_task_budget(project_name):
+    tasks = get_tasks_by_project_name(project_name)
+    total_task_budget = 0
+    for task in tasks:
+        total_task_budget += task.budget
+    return total_task_budget
+
+
+def get_tasks_by_project_name(project_name):
+    project_id = frappe.db.get_value("Project", {"project_name": project_name}, "name")
+    if project_id:
+        tasks = frappe.db.sql("SELECT * FROM `tabTask` WHERE project = %s", project_id, as_dict=True)
+        return tasks
+    else:
+        return []
+    
+
+
+
+
+

@@ -42,8 +42,10 @@
   "act_end_date",
   "sb_costing",
   "total_costing_amount",
+  "previous_budget",
   "column_break_20",
   "total_billing_amount",
+  "budget",
   "sb_more_info",
   "review_date",
   "closing_date",
@@ -392,6 +394,17 @@
    "fieldtype": "Data",
    "hidden": 1,
    "label": "Template Task"
+  },
+  {
+   "fieldname": "budget",
+   "fieldtype": "Int",
+   "label": "Budget"
+  },
+  {
+   "fieldname": "previous_budget",
+   "fieldtype": "Int",
+   "hidden": 1,
+   "label": "Previous Budget"
   }
  ],
  "icon": "fa fa-check",
@@ -399,7 +412,7 @@
  "is_tree": 1,
  "links": [],
  "max_attachments": 5,
- "modified": "2024-03-27 13:10:51.476856",
+ "modified": "2024-04-12 15:47:15.851417",
  "modified_by": "Administrator",
  "module": "Projects",
  "name": "Task",

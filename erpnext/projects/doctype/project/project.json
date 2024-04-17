@@ -40,6 +40,7 @@
   "total_costing_amount",
   "total_purchase_cost",
   "company",
+  "total_budget",
   "column_break_28",
   "total_sales_amount",
   "total_billable_amount",
@@ -447,6 +448,11 @@
    "print_hide": 1,
    "reqd": 1,
    "set_only_once": 1
+  },
+  {
+   "fieldname": "total_budget",
+   "fieldtype": "Int",
+   "label": "Total Budget"
   }
  ],
  "icon": "fa fa-puzzle-piece",
@@ -454,7 +460,7 @@
  "index_web_pages_for_search": 1,
  "links": [],
  "max_attachments": 4,
- "modified": "2024-03-27 13:10:21.057163",
+ "modified": "2024-04-10 17:27:21.847620",
  "modified_by": "Administrator",
  "module": "Projects",
  "name": "Project",
