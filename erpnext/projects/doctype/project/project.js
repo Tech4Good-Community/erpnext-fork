@@ -192,21 +192,25 @@ frappe.ui.form.on("Project", {
 	},
 
 	refresh: function(frm) {
-        var projectName = frm.doc.project_name; // Assuming project_name is a field in your doctype
-        frappe.call({
-            method: 'erpnext.projects.doctype.project.project.get_total_task_budget',
-            args: {
-                project_name: projectName
-            },
-            callback: function(response) {
-                var total_budget = response.message;
-				frm.set_value('total_budget', total_budget);
-            },
-            error: function(xhr, status, error) {
-                console.error('Error occurred while refreshing total task budget:', error);
-            }
-        });
-    }
+		if (frm.doc.project_name && !frm.doc.__islocal) {
+			var projectName = frm.doc.project_name;
+			
+			frappe.call({
+				method: 'erpnext.projects.doctype.project.project.get_total_task_budget',
+				args: {
+					project_name: projectName
+				},
+				callback: function(response) {
+					var total_budget = response.message;
+					frm.set_value('total_budget', total_budget);
+				},
+				error: function(xhr, status, error) {
+					console.error('Error occurred while refreshing total task budget:', error);
+				}
+			});
+		}
+	}
+	
 });
 
 function open_form(frm, doctype, child_doctype, parentfield) {
