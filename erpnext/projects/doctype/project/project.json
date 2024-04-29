@@ -21,6 +21,8 @@
   "expected_end_date",
   "priority",
   "department",
+  "thematics",
+  "sub_thematics",
   "customer_details",
   "customer",
   "column_break_14",
@@ -41,12 +43,14 @@
   "total_purchase_cost",
   "company",
   "total_budget",
+  "total_utilization",
   "column_break_28",
   "total_sales_amount",
   "total_billable_amount",
   "total_billed_amount",
   "total_consumed_material_cost",
   "cost_center",
+  "available_budget",
   "margin",
   "gross_margin",
   "column_break_37",
@@ -453,6 +457,28 @@
    "fieldname": "total_budget",
    "fieldtype": "Int",
    "label": "Total Budget"
+  },
+  {
+   "fieldname": "total_utilization",
+   "fieldtype": "Currency",
+   "label": "Total Utilization"
+  },
+  {
+   "fieldname": "available_budget",
+   "fieldtype": "Currency",
+   "label": "Available Budget"
+  },
+  {
+   "fieldname": "thematics",
+   "fieldtype": "Link",
+   "label": "Thematics",
+   "options": "Thematics"
+  },
+  {
+   "fieldname": "sub_thematics",
+   "fieldtype": "Link",
+   "label": "Sub-thematics",
+   "options": "Sub-thematics"
   }
  ],
  "icon": "fa fa-puzzle-piece",
@@ -460,7 +486,7 @@
  "index_web_pages_for_search": 1,
  "links": [],
  "max_attachments": 4,
- "modified": "2024-04-10 17:27:21.847620",
+ "modified": "2024-04-29 15:53:03.481543",
  "modified_by": "Administrator",
  "module": "Projects",
  "name": "Project",

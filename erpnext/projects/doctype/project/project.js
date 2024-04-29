@@ -201,13 +201,20 @@ frappe.ui.form.on("Project", {
 					project_name: projectName
 				},
 				callback: function(response) {
-					var total_budget = response.message;
+					var total_budget = response.message[0];
+					var total_util = response.message[1];
+					var available_amount = response.message[2];
 					frm.set_value('total_budget', total_budget);
+					frm.set_value('total_utilization', total_util);
+					frm.set_value('available_budget', available_amount);
 				},
 				error: function(xhr, status, error) {
 					console.error('Error occurred while refreshing total task budget:', error);
 				}
 			});
+	
+	
+
 		}
 	}
 	

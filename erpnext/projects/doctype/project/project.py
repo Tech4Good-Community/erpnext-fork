@@ -31,6 +31,7 @@ class Project(Document):
 		actual_end_date: DF.Date | None
 		actual_start_date: DF.Date | None
 		actual_time: DF.Float
+		available_budget: DF.Currency
 		collect_progress: DF.Check
 		company: DF.Link
 		copied_from: DF.Data | None
@@ -61,6 +62,8 @@ class Project(Document):
 		sales_order: DF.Link | None
 		second_email: DF.Time | None
 		status: DF.Literal["Open", "Completed", "Cancelled"]
+		sub_thematics: DF.Link | None
+		thematics: DF.Link | None
 		to_time: DF.Time | None
 		total_billable_amount: DF.Currency
 		total_billed_amount: DF.Currency
@@ -69,6 +72,7 @@ class Project(Document):
 		total_costing_amount: DF.Currency
 		total_purchase_cost: DF.Currency
 		total_sales_amount: DF.Currency
+		total_utilization: DF.Currency
 		users: DF.Table[ProjectUser]
 		weekly_time_to_send: DF.Time | None
 	# end: auto-generated types
@@ -772,7 +776,9 @@ def get_total_task_budget(project_name):
     total_task_budget = 0
     for task in tasks:
         total_task_budget += task.budget
-    return total_task_budget
+    total_utilization_budget = get_total_task_utilization(project_name)
+    available_amount = total_task_budget - total_utilization_budget
+    return total_task_budget, total_utilization_budget, available_amount
 
 
 def get_tasks_by_project_name(project_name):
@@ -783,6 +789,21 @@ def get_tasks_by_project_name(project_name):
     else:
         return []
     
+@frappe.whitelist()
+def get_total_task_utilization(project_name):
+    utilizations = get_utilizations_by_project_name(project_name)
+    total_utilization_budget = 0
+    for utilization in utilizations:
+        total_utilization_budget += utilization.utilisation_value
+    return total_utilization_budget
+
+def get_utilizations_by_project_name(project_name):
+    project_id = frappe.db.get_value("Project", {"project_name": project_name}, "name")
+    if project_id:
+        utilizations = frappe.db.sql("SELECT * FROM `tabTask Utilisation` WHERE project = %s", project_id, as_dict=True)
+        return utilizations
+    else:
+        return []
 
 
 
