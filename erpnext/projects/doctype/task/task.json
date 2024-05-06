@@ -410,9 +410,14 @@
  "icon": "fa fa-check",
  "idx": 1,
  "is_tree": 1,
- "links": [],
+ "links": [
+  {
+   "link_doctype": "Task Utilisation",
+   "link_fieldname": "task"
+  }
+ ],
  "max_attachments": 5,
- "modified": "2024-04-12 15:47:15.851417",
+ "modified": "2024-04-23 16:04:43.057966",
  "modified_by": "Administrator",
  "module": "Projects",
  "name": "Task",

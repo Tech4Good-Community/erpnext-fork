@@ -1,0 +1,91 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2024-04-23 15:55:48.395614",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "task_utilisation_details_section",
+  "naming_series",
+  "task",
+  "project",
+  "task_budget",
+  "utilisation_value",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "task_utilisation_details_section",
+   "fieldtype": "Section Break",
+   "label": "Task Utilisation Details"
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Task Utilisation ID",
+   "options": "TASK-UTIL-",
+   "read_only": 1
+  },
+  {
+   "fieldname": "task",
+   "fieldtype": "Link",
+   "label": "Task",
+   "options": "Task"
+  },
+  {
+   "fetch_from": "task.project",
+   "fieldname": "project",
+   "fieldtype": "Link",
+   "label": "Project",
+   "options": "Project"
+  },
+  {
+   "fetch_from": "task.budget",
+   "fieldname": "task_budget",
+   "fieldtype": "Currency",
+   "label": "Task Budget"
+  },
+  {
+   "fieldname": "utilisation_value",
+   "fieldtype": "Currency",
+   "label": "Utilisation Value"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Task Utilisation",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2024-04-25 13:12:36.091783",
+ "modified_by": "Administrator",
+ "module": "Projects",
+ "name": "Task Utilisation",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

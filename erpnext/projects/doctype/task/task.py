@@ -51,6 +51,7 @@ class Task(NestedSet):
 		lft: DF.Int
 		old_parent: DF.Data | None
 		parent_task: DF.Link | None
+		previous_budget: DF.Int
 		priority: DF.Literal["Low", "Medium", "High", "Urgent"]
 		progress: DF.Percent
 		project: DF.Link | None
